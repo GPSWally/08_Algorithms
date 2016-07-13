@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Reverse the string "Hello World"</title>
+</head>
+<body>
+	<div> 
+		<p>
+		Given a string, for example, “Hello World”, write some code to reverse that string (“dlroW olleH”).
+
+		(Hint: try using the Array.reverse() method! But, if you do, try solving it just using looping as well).
+		</p> 
+	</div>
+	<div>
+		<p><b>Method 1, without Array.reverse() <span id="output1"></span></b></p>
+		<p></p>
+		<p><b>Method 2, using Array.reverse() <span id="output2"></span></b></p>
+		<p></p>
+		<p><b>Method 2, using Array.reverse() and split<span id="output3"></span></b></p>
+	</div>
+
+	<script>
+		//Method 1 
+		var myStr = prompt("Enter a string, like Hello World");  
+		var revStr = ""; // Create a variable
+
+
+		//A loop to cycle through the string.  The loop starts at the max value and counts backwards.
+		for(var i = myStr.length-1; i >= 0; i--){
+			revStr = revStr + myStr.charAt(i); //Loads reverse string.
+		}
+		//output the answer
+		document.getElementById("output1").innerHTML = '-->  "' + revStr + '"';
+
+		//Method 2
+		var charArr = ['',''];  // Creating an array
+		var revStr2 = ''; // Creating a variable to hold the reverse word.
+
+		//Loading the Array
+		for (var j = 0; j < myStr.length; j++){
+			charArr[j] = myStr.charAt(j);
+		}
+
+		//Reversing the Array
+		charArr = charArr.reverse();
+
+		//Loading the variable with the reverse string
+		for (var x = 0; x < myStr.length; x++){
+			revStr2 = revStr2 + charArr[x];
+		}
+
+		//Method 3
+
+		var splitStr = myStr.split('');
+		splitStr.reverse();
+		var reversed = splitStr.join('');
+
+		//output the answer
+
+		document.getElementById("output2").innerHTML = '-->  "' + revStr2 + '"';
+		document.getElementById("output3").innerHTML = '-->  "' + reversed + '"';
+	</script>
+</body>
+</html>

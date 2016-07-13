@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Problem #4 from Algorithms Homework.s</title>
+</head>
+<body>
+	<div>
+		<p>Write a JavaScript program which prompts the user for a number and console.logs that number as a string with dashes (-) between each two odd digits. For example if the user types 0253697 the output should be “025-369-7”.</p>
+	</div>
+	<div>
+		<p>Input number was <span id='input'></span>.</p>
+		<p></p>
+		<p>Output number is <span id="output"></span>.</p>
+	</div>
+
+	<script>
+		//The long way of doing it.  I did this to practice working with arrays and push...
+
+		var numEnt = prompt("Enter a number with at least 6 digits"); // Enter the number
+		var numArr = numEnt.split(""); //Split the digits into an array
+
+		document.getElementById('input').innerHTML = numEnt //Display the inputted number
+
+
+		var secondDig = 0; //create a variable to hold the second digit of the number.
+		var firstDig = parseInt(numArr[0]); //load the first digit as a number.
+		var newNum = firstDig+"";//converts firstDig from a number to a character & loads the first digit into the new number.
+
+		//Array to work through each digit of the number entered.
+		for (var i=1; i<numEnt.length; i++){
+			secondDig = parseInt(numArr[i]); //load the second digit as a number
+			
+			//Determine if 2 digits are odd and add a - if they are place a - between them.
+			if ((secondDig % 2 === 1) && (firstDig % 2 === 1)){
+				newNum = newNum + "-"
+			}
+
+			//Load all the digits into a new String
+			newNum = newNum + secondDig;
+
+			//Shift the digits to the next set of digits
+			firstDig = secondDig;
+		}
+
+		document.getElementById('output').innerHTML = newNum; //Output the answer
+
+	</script>
+
+</body>
+</html>

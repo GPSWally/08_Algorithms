@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Problem #5 from Algorithms Homework</title>
+</head>
+<body>
+	<div><p><h4><b> Problem Statement </b></h4>
+		Have the user come up with a number between 1 and 100 (inclusive), but not enter it into the computer. Have the computer guess numbers in that same range, and ask the user if that is the number (e.g. “Is 40 your number?”). You can use prompt text (propmt("is 40 your number")) to accomplish this. If the number is too high, have the user enter “H”. If the number is too low, have the user enter “L”. If the computer guessed the number, have the user enter “Y”, and start a new game. Can you write an efficient algorithm so that the computer will find your number in the minimum number of guesses?
+	</p>
+	<p>
+	</p>
+	<p>
+		<h3><b>Think of a whole number between 1 and 100 inclusive!!</b></h3>
+	</p>
+		<h3><p><b><span id="initOut"> </span></b></p></h3>
+	</div>
+	<div>
+		<p><h2><b><span id="error"></span></b></h2></p>
+	</div>
+
+	
+
+	<script>
+		//var guessNum = Math.floor(Math.random()*100 + 1);
+		
+		var count = 0;  //Just a counter
+		var lowerBound = 0; // lowest number in the range
+		var upperBound = 101;//highest number in the range plus 1
+		var computerGuess = Math.floor((lowerBound + upperBound)/2) + lowerBound;  
+			//Starting point for the computer
+		var userAnswer = ''; //First user Input answer, which is ignored.
+		var incorrectEnt = ''
+		/*Run loop until number is found or error occurs.  Counter is used to prevent an infinite loop and keep track if an error occurs.
+		*/
+		
+		// guess a number within the range
+		// check to see if the number is the actual number
+		// If it's lower, set upper limit to guess
+		// If it's higher, set lower limit to guess
+		// loop until the number is guessed or higher limit and lower limit are only 1 apart.
+
+		while (userAnswer !== 'y' && count < 10){
+
+			userAnswer = prompt(incorrectEnt + 'The computer guessed your number to be: ' + computerGuess + '.  Enter a Y for yes, L if your number is lower or a H if your number is higher. ');
+			userAnswer = userAnswer.toLowerCase(); //Change the answer to lower case 
+			incorrectEnt = ''; //Initializing the incorrect variable.
+
+			if (userAnswer === 'h'){
+				lowerBound = computerGuess; //If number is higher, resetting the lower bound
+			}else if(userAnswer === 'l'){
+				upperBound = computerGuess;  //If number is lower, resetting the lower bound
+			}else if (userAnswer === 'y'){
+				document.getElementById('initOut').innerHTML = 'Your number is ' + computerGuess + '!'
+				//Print statement if number is guessed.
+			}else { 
+				incorrectEnt = "You pressed an incorrect key.  "; //If a wrong key is pressed by the user.
+			}
+			computerGuess = Math.floor((upperBound-lowerBound)/2) + lowerBound;
+			//Calculates a new guess.
+
+			if (upperBound-lowerBound<2){
+				//If the users changes their number in the middle of the game this will be true.
+				document.getElementById('error').innerHTML = 'Your number changed or you entered a wrong key, please start the game over!!'
+				count = 10; //To prevent an infinite loop.
+			}
+			count++  //Increase the loop counter.
+		}
+
+	</script>
+</body>
+</html>
